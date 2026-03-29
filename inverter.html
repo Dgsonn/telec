@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INVERTER | TELEC Energy</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-t.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="./img/favicon-t.png">
+    <link rel="apple-touch-icon" href="./img/favicon-t.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="inverter.css">
+</head>
+<body>
+    <!-- NAV (WANZE STYLE) -->
+    <nav>
+        <a href="index.html" class="nav-logo">
+            <img src="./img/logo-telec.png" alt="TELEC Logo" style="">
+        </a>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links">
+            <div class="nav-marker"></div>
+            
+            <li class="nav-item">
+                <a href="index.html#about">Giới thiệu</a>
+            </li>
+
+            <li class="nav-item">
+                <a href="index.html#products">Sản phẩm</a>
+                <div class="sub-menu">
+                    <ul>
+                        <li><a href="inverter.html">Hệ thống Inverter</a></li>
+                        <li><a href="solar-lithium.html">Pin Solar & Lithium</a></li>
+                        <li><a href="smarthome.html" target="_blank">Giải Pháp Smart Home</a></li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a href="projects.html">Dự án</a>
+                <div class="sub-menu">
+                    <ul>
+                        <li><a href="projects.html#smarthome">Dự án Smarthome</a></li>
+                        <li><a href="projects.html#solar">Dự án Điện mặt trời</a></li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a href="news.html">Tin tức</a>
+                <div class="sub-menu">
+                    <ul>
+                        <li><a href="news.html">Tin tức năng lượng</a></li>
+                        <li><a href="#">Tài liệu kỹ thuật</a></li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a href="index.html#contact">Liên hệ & Hỗ trợ</a>
+                <div class="sub-menu">
+                    <ul>
+                        <li><a href="index.html#contact">FaceBook</a></li>
+                        <li><a href="index.html#contact">Zalo</a></li>
+                        <li><a href="#">Chính sách bảo hành</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+<header class="inverter-banner">
+    <!-- Ảnh sẽ làm nền -->
+    
+    <img src="img/z7628893770531_7d56f1693e1d3bd79114d763d7845633.jpg" alt="Solar Banner">
+    <!-- Chữ đè lên trên -->
+    <div class="page-header">
+        <h1>Giải pháp năng lượng</h1>
+        <p>BETTER ELECTRICITY - BETTER LIFE</p>
+    </div>
+</header>
+    <!-- MAIN LAYOUT -->
+    <div class="main-content-layout">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-sticky">
+                <div class="sidebar-section">
+                    <h3>Tìm kiếm</h3>
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="productSearch" placeholder="Tên sản phẩm...">
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3 class="group-title"><i class="fas fa-bolt"></i> Inverter</h3>
+                    <div class="category-vertical">
+                        <a href="#chisage" class="nav-link-item">Chisage Hybrid</a>
+                        <a href="#sungrow" class="nav-link-item">Sungrow</a>
+                        <a href="#huawei" class="nav-link-item">Huawei</a>
+                    </div>
+
+                    <h3 class="group-title"><i class="fas fa-solar-panel"></i> Tấm Pin Solar</h3>
+                    <div class="category-vertical">
+                        <a href="#longi" class="nav-link-item">Longi Solar</a>
+                        <a href="#jinko" class="nav-link-item">Jinko Solar</a>
+                    </div>
+
+                    <h3 class="group-title"><i class="fas fa-battery-full"></i> Pin Lưu Trữ</h3>
+                    <div class="category-vertical">
+                        <a href="#" class="nav-link-item">Pylontech</a>
+                        <a href="#" class="nav-link-item">Chisage ESS</a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- PRODUCT DISPLAY -->
+        <main class="product-display">
+            <!-- PHẦN NỔI BẬT NGẪU NHIÊN -->
+            <section class="featured-section">
+                <div class="featured-header">
+                    <h2><i class="fas fa-star"></i> Đề xuất hôm nay</h2>
+                </div>
+                <div id="featured-grid" class="product-grid"></div>
+            </section>
+
+            <hr class="section-divider">
+
+            <!-- CÁC HÃNG -->
+            <section id="chisage" class="brand-section">
+                <div class="brand-header"><h2>Chisage Hybrid</h2></div>
+                <div id="chisage-grid" class="product-grid"></div>
+            </section>
+
+            <section id="sungrow" class="brand-section">
+                <div class="brand-header"><h2>Sungrow Series</h2></div>
+                <div id="sungrow-grid" class="product-grid"></div>
+            </section>
+
+            <section id="huawei" class="brand-section">
+                <div class="brand-header"><h2>Huawei Smart</h2></div>
+                <div id="huawei-grid" class="product-grid"></div>
+            </section>
+        </main>
+    </div>
+
+    <footer id="contact" class="main-footer">
+    <div class="footer-container">
+        <!-- Cột 1: Giới thiệu & Logo -->
+        <div class="footer-col footer-about">
+            <div class="footer-logo">
+                <svg width="200" height="60" viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="#FF8C42">
+                        <rect x="20" y="100" width="40" height="10" rx="5" />
+                        <rect x="50" y="120" width="50" height="10" rx="5" />
+                        <rect x="80" y="140" width="60" height="10" rx="5" />
+                        <rect x="40" y="160" width="80" height="10" rx="5" />
+                        <rect x="70" y="180" width="70" height="10" rx="5" />
+                        <rect x="100" y="200" width="50" height="10" rx="5" />
+                        <path d="M160 70h160v40h-55v110h-50v-110h-55z" />
+                    </g>
+                    <text x="340" y="220" font-family="Arial Black, sans-serif" font-size="120" fill="white" style="font-weight: 900;">ELEC</text>
+                </svg>
+            </div>
+            <h3 class="footer-slogan">BETTER ELECTRICITY - BETTER LIFE</h3>
+            <p class="footer-desc">Chuyên cung cấp giải pháp Solar - Smarthome hàng đầu Việt Nam. Mang công nghệ xanh và tiện nghi đến ngôi nhà của bạn.</p>
+            <div class="footer-social">
+                <a href="#" data-contact="facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" data-contact="youtube"><i class="fab fa-youtube"></i></a>
+                <a href="#" data-contact="zalo"><i class="fab fa-zalo"></i></a>
+            </div>
+        </div>
+
+        <!-- Cột 2: Danh mục sản phẩm -->
+        <div class="footer-col">
+            <h4>Sản phẩm</h4>
+            <ul class="footer-links">
+                <li><a href="inverter.html">Hệ thống Biến tần</a></li>
+                <li><a href="solar-lithium.html">Pin Solar & Lithium</a></li>
+                <li><a href="https://lumi.vn">Nhà thông minh Lumi</a></li>
+                <li><a href="projects.html">Dự án tiêu biểu</a></li>
+            </ul>
+        </div>
+
+        <!-- Cột 3: Thông tin liên hệ -->
+        <div class="footer-col footer-contact">
+            <h4>Thông tin liên hệ</h4>
+            <ul>
+                <li>
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span><strong>VP:</strong> Số 48 LK7, KĐT Tổng cục V, Tân Triều, Thanh Trì, Hà Nội</span>
+                </li>
+                <li>
+                    <i class="fas fa-building"></i>
+                    <span><strong>Trụ sở:</strong> Đường 57A, Thị trấn Lâm, Ý Yên, Nam Định</span>
+                </li>
+                <li>
+                    <i class="fas fa-phone-alt"></i>
+                    <span data-contact="phone">0946.233.297 - 0335.109.032</span>
+                </li>
+                <li>
+                    <i class="fas fa-envelope"></i>
+                    <span>Telec.ltd2025@gmail.com</span>
+                </li>
+                <li>
+                    <i class="fas fa-globe"></i>
+                    <span>www.telec.com.vn</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2024 T-ELEC Energy. All rights reserved. | <a href="https://telec.com.vn/">Better Electricity - Better Life</a></p>
+    </div>
+</footer>
+
+    <script src="inverter.js"></script>
+    <script src="contact-loader.js"></script>
+</body>
+</html>

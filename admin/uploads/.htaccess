@@ -1,0 +1,6 @@
+# Cho phép xem file ảnh nhưng chặn thực thi PHP trong uploads
+<FilesMatch "\.php$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+Options -Indexes

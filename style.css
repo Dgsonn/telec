@@ -1,0 +1,1210 @@
+    :root {
+    color-scheme: light;
+    --orange: #FF8C42;
+    --blue: #0047AB;
+    --bg-dark: #0a0a0a;
+    --light: #fcfcfc;
+    --text-dark: #121212; /* Đen sâu hơn để tăng độ sang */
+    --font-main: 'Plus Jakarta Sans', sans-serif;
+}
+
+    * { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: var(--font-main); 
+    -webkit-font-smoothing: antialiased; /* Làm nét chữ mượt hơn trên Mac/iPhone */
+}
+nav .nav-links li a {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+/* --- HERO SECTION (CHỮ PHẢI MẠNH MẼ NHƯNG TINH TẾ) --- */
+.hero-content h1 {
+    font-size: clamp(40px, 8vw, 85px);
+    font-weight: 800;
+    letter-spacing: -2px; /* Chữ to thì nên khít lại một chút để tạo khối */
+    line-height: 0.9;
+    text-transform: uppercase;
+}
+
+.hero-content p {
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 8px; /* Slogan giãn cực rộng theo phong cách xe hơi/đồng hồ xa xỉ */
+    text-transform: uppercase;
+    margin-top: 20px;
+    opacity: 0.9;
+}
+
+/* --- TIÊU ĐỀ CÁC PHẦN (CHỐNG KIỂU ĐỒ ÁN) --- */
+.section-title h2 {
+    font-size: 42px;
+    font-weight: 800;
+    color: var(--blue);
+    letter-spacing: -1px;
+    position: relative;
+}
+
+.section-title p {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+/* --- THẺ SẢN PHẨM & DỰ ÁN --- */
+.product-card h4, .project-card-info h3 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+}
+
+.product-card p, .project-card-info p {
+    font-size: 15px;
+    line-height: 1.7; /* Tăng khoảng cách dòng để dễ đọc, không bị "ngộp" chữ */
+    color: #555;
+    font-weight: 400;
+}
+
+/* Tag dự án */
+.card-tag {
+    font-size: 9px;
+    letter-spacing: 2px;
+    font-weight: 800;
+}
+
+/* --- MEGA MENU (CHỮ TO NHƯNG MẢNH) --- */
+.dropdown-column ul li a {
+    font-size: 32px !important;
+    font-weight: 300 !important; /* Chữ to nhưng nét mảnh nhìn cực kỳ đẳng cấp */
+    letter-spacing: -1px;
+}
+
+.dropdown-column h4 {
+    font-size: 10px;
+    letter-spacing: 5px;
+    font-weight: 700;
+}
+
+/* --- FOOTER --- */
+.footer-slogan {
+    letter-spacing: 3px;
+    font-weight: 800;
+}
+
+.footer-desc {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #999;
+}
+
+        /* HEADER & VIDEO DUY NHẤT */
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background: #000;
+        }
+
+        #mainVideo {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        /* NAVIGATION: NẰM TRÊN CÙNG ĐÈ LÊN VIDEO */
+    /* THANH NAV: Đã chuyển sang FIXED để lướt theo màn hình */
+nav { 
+    position: fixed; /* Chuyển từ absolute sang fixed */
+    top: 0; 
+    left: 0; 
+    width: 100%;
+    padding: 15px 8%; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    z-index: 9999; /* Đảm bảo luôn nằm trên các phần khác */
+    background: transparent; /* Ban đầu trong suốt */
+    opacity: 0;
+    /* Transition mượt mà khi hiện ra và khi đổi màu nền */
+    transition: all 0.4s ease;
+}
+
+/* Khi đã chạy xong Intro */
+body.loaded nav { 
+    opacity: 1; 
+    transition: opacity 0.8s ease 0.2s, background 0.4s ease, padding 0.4s ease;
+}
+
+/* HIỆU ỨNG KHI CUỘN CHUỘT: Đổi màu để nhìn rõ trên nền trắng */
+nav.scrolled {
+    background: white;
+    padding: 10px 8%; /* Thu nhỏ thanh menu lại một chút cho gọn */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.nav-logo { display: flex; align-items: center; cursor: pointer; }
+
+/* Màu chữ mặc định (Trắng trên nền video) */
+nav ul a { 
+   color: white;
+    transition: color 0.3s ease;
+    z-index: 2;
+    position: relative;
+}
+
+nav ul a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--orange);
+    transition: width 0.3s ease;
+}
+
+/* Khi hover thì chiều dài đường kẻ thành 100% */
+nav ul a:hover::after {
+    width: 100%;
+}
+
+/* Màu chữ khi cuộn xuống (Xanh trên nền trắng) */
+nav.scrolled ul a {
+    color: var(--blue);
+}
+
+nav ul a:hover { color: var(--orange) !important; }
+
+/* Sửa lại logo khi cuộn để đổi màu chữ ELEC từ trắng sang xanh */
+nav.scrolled .nav-logo svg text {
+    fill: var(--blue);
+}
+        
+        body.loaded nav { opacity: 1; }
+
+        .nav-logo { display: flex; align-items: center; }
+        /* --- CSS CHO MENU TRƯỢT (NAV HOVER) --- */
+nav ul {
+    display: flex;
+    align-items: center; /* Căn giữa các mục theo chiều dọc */
+    list-style: none;
+    gap: 10px;
+    position: relative;
+    padding: 5px 15px;
+}
+
+/* Các mục li chính */
+nav ul > li {
+    position: relative; /* Cần thiết để menu con bám vào đây */
+    display: block;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    padding: 10px 20px; /* Tạo không gian cho thanh màu hiện lên */
+    display: inline-block;
+    position: relative;
+    z-index: 2; /* Để chữ nằm trên thanh màu */
+    transition: color 0.3s;
+    cursor: pointer;
+}
+
+/* Lớp nền trượt (Thanh màu sẽ di chuyển) */
+/* --- SLIDING HIGHLIGHT WANZE STYLE --- */
+.nav-marker {
+    position: absolute;
+    height: 38px; /* Độ cao viên thuốc */
+    width: 0;
+    top: 50%;
+    transform: translateY(-50%); /* Luôn căn giữa chữ theo chiều dọc */
+    left: 0;
+    background: rgba(0, 0, 0, 0.7); /* Màu đen trong suốt sang trọng */
+    backdrop-filter: blur(5px);
+    border-radius: 20px; /* Bo tròn kiểu viên thuốc */
+    z-index: 1; /* Nằm dưới chữ */
+    opacity: 0;
+    pointer-events: none; /* Không cản trở click chuột */
+    
+    /* ĐỘ NẢY CAO CẤP: Đây là chìa khóa của Wanze style */
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Khi đã cuộn trang (nền trắng), thanh trượt có thể đậm hơn hoặc đổi màu */
+nav.scrolled .nav-marker {
+    background: var(--blue) !important; /* Đổi sang màu Xanh thương hiệu */
+    opacity: 1;
+}
+
+/* Đảm bảo chữ Menu nổi bật trên thanh trượt */
+nav ul li a {
+    position: relative;
+    z-index: 2; /* Chữ luôn nằm trên cái marker */
+    padding: 10px 20px;
+    display: inline-block;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: white !important; /* Chữ trắng khi marker trượt tới */
+}
+nav ul li:hover a, 
+nav ul li a:hover {
+    color: white !important; 
+}
+
+        /* INTRO OVERLAY */
+        #intro-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1s, visibility 1s;
+        }
+
+        .t-svg-mask {
+    position: absolute;
+    width: 100%; height: 100%;
+    transform-origin: center center;
+    animation: zoomMask 4.5s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+    will-change: transform; 
+    backface-visibility: hidden;
+}
+
+        @keyframes zoomMask {
+    0% { transform: scale(1); opacity: 0; }
+    15% { transform: scale(1); opacity: 1; }
+    70% { transform: scale(1); opacity: 1; }
+    /* Giảm từ 120 xuống 80 là đủ để phủ kín màn hình rồi */
+    100% { transform: scale(80); opacity: 1; } 
+}
+
+/* Cho Intro biến mất nhanh hơn một chút */
+body.loaded #intro-overlay { 
+    opacity: 0; 
+    visibility: hidden;
+    transition: opacity 0.6s ease-out; 
+}
+
+        /* HERO CONTENT */
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.4);
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 2s ease;
+        }
+        .loaded .hero-overlay { opacity: 1; }
+
+        .hero-content {
+    position: absolute;
+    top: 55%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    text-align: center;
+    color: white;
+    opacity: 0;
+    transition: all 0.8s ease 0.4s;
+     }
+    
+        .loaded .hero-content { opacity: 1; transform: translate(-50%, -50%); }
+
+        .hero-content h1 { font-size: 60px; font-weight: 900; text-transform: uppercase; margin-bottom: 10px; }
+        .hero-content p { font-size: 24px; color: var(--orange); font-weight: bold; letter-spacing: 3px; }
+
+        .intro-brand {
+    position: absolute; 
+    bottom: 25%; 
+    color: white; 
+    z-index: 1001;
+    font-size: 24px; /* Tăng size lên một chút vì chữ ngắn đi */
+    letter-spacing: 20px; /* Tăng khoảng cách chữ để tạo sự sang trọng, dàn trải */
+    font-weight: 800; 
+    text-transform: uppercase;
+    opacity: 0;
+    filter: blur(10px); /* Bắt đầu bằng độ mờ nhòe */
+    transform: scale(0.9); /* Bắt đầu hơi nhỏ một chút */
+    
+    /* Hiệu ứng hiện ra mượt mà hơn */
+    animation: cinematicIn 2s ease-out forwards 1s;
+}
+
+@keyframes cinematicIn {
+    0% {
+        opacity: 0;
+        filter: blur(10px);
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 0.7; /* Không nên để 1 để tạo cảm giác huyền ảo */
+        filter: blur(0);
+        transform: scale(1); /* Phóng lớn dần về kích thước chuẩn */
+    }
+}
+
+        /* CÁC PHẦN DƯỚI */
+        section { padding: 100px 10%; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 32px; color: var(--blue); text-transform: uppercase; margin-bottom: 15px; position: relative; display: inline-block; }
+        .section-title h2::after { content: ""; width: 60px; height: 4px; background: var(--orange); position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); }
+
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .about-text h3 { color: var(--orange); margin-bottom: 20px; font-size: 22px; }
+        .about-text ul { list-style: none; margin-top: 20px; }
+        .about-text ul li { margin-bottom: 12px; padding-left: 30px; position: relative; }
+        .about-text ul li::before { content: "\f00c"; font-family: "Font Awesome 5 Free"; font-weight: 900; color: var(--orange); position: absolute; left: 0; }
+
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        /* --- CSS CHO THẺ SẢN PHẨM MỚI --- */
+/* --- CSS THẺ SẢN PHẨM (ICON ĐỨNG YÊN) --- */
+.product-card {
+    background: white;
+    padding: 40px;
+    border-radius: 20px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); 
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #eee; 
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    cursor: pointer;
+}
+
+/* Hiệu ứng TOÀN BỘ THẺ khi hover */
+.product-card:hover {
+    transform: translateY(-15px) scale(1.02); 
+    box-shadow: 0 20px 50px rgba(0, 71, 171, 0.15); 
+    border-color: var(--orange); 
+}
+
+/* Thanh cam nhỏ ở đầu thẻ */
+.product-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 5px;
+    background: var(--orange);
+    transform: scaleX(0); 
+    transition: transform 0.4s ease;
+}
+
+.product-card:hover::before {
+    transform: scaleX(1); 
+}
+
+/* ĐÃ LOẠI BỎ HIỆU ỨNG CỦA ICON Ở ĐÂY */
+.product-card i {
+    transition: none; /* Đảm bảo icon không có hiệu ứng thừa */
+}
+
+/* Tiêu đề đổi màu khi thẻ hover */
+.product-card h4 {
+    transition: color 0.3s ease;
+}
+
+.product-card:hover h4 {
+    color: var(--orange); 
+}
+
+/* Các nhãn thương hiệu đổi màu khi thẻ hover */
+.brand-item {
+    background: #f1f1f1;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    transition: all 0.3s ease;
+}
+
+.product-card:hover .brand-item {
+    background: var(--blue); 
+    color: white;
+}
+
+.brand-item:hover {
+    background: var(--orange);
+    color: white;
+    transform: scale(1.1);
+}
+
+        .project-section h3 { margin: 40px 0 20px; color: var(--orange); border-left: 4px solid var(--orange); padding-left: 15px; }
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+/* --- HIỆU ỨNG DỰ ÁN TRIỂN KHAI MỚI --- */
+.project-item {
+    position: relative;
+    height: 300px; /* Tăng nhẹ chiều cao cho thoáng */
+    border-radius: 20px; /* Bo góc đồng bộ với thẻ sản phẩm */
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); /* Hiệu ứng mượt */
+    border: 1px solid #eee;
+     cursor: pointer;
+}
+
+/* Hiệu ứng bay lên và to ra cho cả khối dự án */
+.project-item:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 20px 50px rgba(0, 71, 171, 0.2); /* Đổ bóng sâu màu xanh */
+}
+
+/* Thanh cam nhỏ xuất hiện ở đầu ảnh khi hover (Đồng bộ thương hiệu) */
+.project-item::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 5px;
+    background: var(--orange);
+    z-index: 10;
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.project-item:hover::before {
+    transform: scaleX(1);
+}
+
+/* Hiệu ứng ảnh bên trong */
+.project-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease; /* Ảnh phóng to chậm và mượt */
+    opacity: 0.9;
+}
+
+.project-item:hover img {
+    transform: scale(1.1); /* Phóng to nhẹ ảnh nền */
+    opacity: 1;
+}
+
+/* Hiệu ứng thanh thông tin phía dưới */
+.project-info {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 25px 20px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+    z-index: 5;
+    transition: all 0.4s ease;
+}
+
+/* Khi hover, phần thông tin sẽ sáng lên và đẩy nhẹ lên trên */
+.project-item:hover .project-info {
+    background: linear-gradient(transparent, rgba(255, 140, 66, 0.9)); /* Chuyển nền sang màu cam khi hover */
+    padding-bottom: 30px;
+}
+/* Áp dụng vào logo footer */
+.footer-logo svg {
+    animation: pulse-logo 3s infinite ease-in-out;
+}
+
+        footer { background: var(--blue); color: white; padding: 60px 10%; text-align: center; }
+        .footer-logo { margin-bottom: 15px; display: flex; justify-content: center; }
+        .copyright { margin-top: 40px; opacity: 0.6; font-size: 13px; }
+
+        /* --- PHẦN THÊM MỚI: HIỆU ỨNG HIỆN LÊN KHI CUỘN --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+         #about { 
+            position: relative; 
+            padding: 120px 10%; 
+            overflow: hidden; /* Cực kỳ quan trọng để chữ T không tràn ra ngoài */
+            background: var(--light);
+        }
+
+        /* 2. Định dạng chữ T khổng lồ */
+        .bg-scroll-t {
+            position: absolute;
+            right: -5%;         /* Vị trí cách lề phải */
+            top: 50%;            /* Bắt đầu từ giữa chiều dọc */
+            transform: translateY(-50%); /* Căn tâm chuẩn giữa */
+            font-size: 1000px;   /* Độ to của chữ T */
+            font-weight: 900;
+            color: rgba(255, 140, 66, 0.12); /* Mã màu cam thương hiệu và độ mờ 0.12 */
+            line-height: 1;
+            z-index: 0;          /* Nằm dưới cùng */
+            pointer-events: none; /* Không cản trở click chuột */
+            user-select: none;   /* Không cho bôi đen chữ này */
+            transition: transform 0.1s ease-out; /* Độ mượt khi trượt */
+        }
+
+        /* 3. Đảm bảo các nội dung khác nằm trên chữ T */
+        .section-title, .about-grid {
+            position: relative;
+            z-index: 2; 
+        }
+        /* --- CSS CHO SUB-MENU TÁCH BIỆT --- */
+.nav-links {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 10px;
+    position: relative;
+    padding: 10px 25px;
+}
+
+.nav-item {
+    position: relative; /* Giữ menu con bám theo mục cha */
+}
+
+.sub-menu {
+    position: absolute;
+    top: 100%; 
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: rgba(10, 10, 10, 0.85); /* Tối trong suốt sang trọng */
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    padding: 10px;
+    border-radius: 12px;
+    min-width: 240px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    
+    /* Ẩn mặc định */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    z-index: 9990;
+}
+
+/* Kích hoạt hiện menu con khi di chuột vào nav-item */
+.nav-item:hover .sub-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(10px);
+}
+
+/* Đổi nền khi cuộn trang (Scrolled) */
+nav.scrolled .sub-menu {
+    background: rgba(255, 255, 255, 0.98);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.sub-menu ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0 !important;
+}
+
+.sub-menu ul li a {
+    color: #fff !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    text-transform: none !important;
+    letter-spacing: 0.5px;
+    padding: 10px 15px !important;
+    border-radius: 8px;
+    transition: all 0.3s ease !important;
+    display: block;
+    width: 100%;
+    white-space: nowrap;
+}
+
+/* Màu chữ của menu con khi cuộn trang */
+nav.scrolled .sub-menu ul li a {
+    color: var(--text-dark) !important;
+}
+
+/* Hiệu ứng hover cho menu con */
+.sub-menu ul:hover li a:not(:hover) {
+    opacity: 0.4;
+}
+
+.sub-menu ul li a:hover {
+    color: var(--orange) !important;
+    transform: translateX(8px);
+    background: rgba(255, 140, 66, 0.1); 
+}
+
+/* Sửa lại banner không bị lồng lỗi */
+.inverter-banner {
+    width: 100%;
+    height: 60vh;
+    margin-top: 70px;
+    overflow: hidden;
+}
+/* --- CSS DỰ ÁN TRANG CHỦ (HOME PROJECTS) --- */
+#home-projects {
+    padding: 100px 10%;
+    background: #fff;
+}
+
+.project-grid-home {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.project-card-home {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    border: 1px solid #f0f0f0;
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.project-card-img {
+    position: relative;
+    width: 100%;
+    height: 230px;
+    overflow: hidden;
+}
+
+.project-card-img img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.card-overlay {
+    position: absolute;
+    top: 20px; left: 20px;
+}
+
+.card-tag {
+    background: var(--blue);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.project-card-info { padding: 30px; }
+.project-card-info h3 { color: var(--blue); font-size: 20px; margin-bottom: 12px; }
+.project-card-info p { color: #777; font-size: 14px; line-height: 1.6; margin-bottom: 20px; }
+
+.link-detail {
+    text-decoration: none;
+    color: var(--orange);
+    font-weight: 700;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.link-detail i { margin-left: 5px; font-size: 12px; }
+
+/* HIỆU ỨNG HOVER */
+.project-card-home:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 20px 50px rgba(0, 71, 171, 0.1);
+    border-color: var(--orange);
+}
+
+.project-card-home:hover img { transform: scale(1.1); }
+.project-card-home:hover h3 { color: var(--orange); }
+
+/* NÚT XEM TẤT CẢ PHONG CÁCH WANZE */
+.view-all-wrapper {
+    text-align: center;
+    margin-top: 60px;
+}
+
+.btn-wanze-outline {
+    display: inline-block;
+    padding: 18px 45px;
+    border: 2px solid var(--blue);
+    color: var(--blue);
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 40px;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 2px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn-wanze-outline:hover {
+    color: white;
+    border-color: var(--orange);
+    transform: translateY(-5px) scale(1.05);
+}
+
+.btn-wanze-outline::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 0; height: 100%;
+    background: var(--orange);
+    z-index: -1;
+    transition: width 0.4s ease;
+}
+
+.btn-wanze-outline:hover::before { width: 100%; }
+:root {
+    --dark-bg: #1a1a1a;
+    --footer-text: #cccccc;
+    --orange: #FF8C42;
+}
+
+.main-footer {
+    background-color: var(--dark-bg);
+    color: #fff;
+    padding: 60px 0 20px 0;
+    font-family: 'Raleway', sans-serif;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1.5fr;
+    gap: 40px;
+}
+
+.footer-col h4 {
+    color: var(--orange);
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    position: relative;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 50px;
+    height: 2px;
+    background: var(--orange);
+}
+
+.footer-slogan {
+    font-size: 1rem;
+    font-weight: 900;
+    color: var(--orange);
+    margin: 15px 0;
+    letter-spacing: 1px;
+}
+
+.footer-desc {
+    color: var(--footer-text);
+    line-height: 1.6;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: var(--footer-text);
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 0.95rem;
+}
+
+.footer-links a:hover {
+    color: var(--orange);
+    padding-left: 5px;
+}
+
+.footer-contact ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-contact li {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 15px;
+    color: var(--footer-text);
+    font-size: 0.9rem;
+}
+
+.footer-contact i {
+    color: var(--orange);
+    margin-top: 4px;
+    width: 20px;
+    text-align: center;
+}
+
+.footer-social {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-social a {
+    width: 35px;
+    height: 35px;
+    background: #333;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+.footer-social a:hover {
+    background: var(--orange);
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #777;
+}
+
+.footer-bottom a {
+    color: var(--orange);
+    text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        text-align: left;
+    }
+    .footer-col h4::after {
+        left: 0;
+    }
+}
+/* Tối ưu cho Logo */
+.nav-logo svg {
+    filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.2)); /* Tạo độ nổi trên nền video */
+    transition: all 0.3s ease;
+}
+
+/* Khi cuộn trang (nền trắng), bỏ đổ bóng để logo thanh thoát */
+nav.scrolled .nav-logo svg {
+    filter: none;
+}
+
+/* Đảm bảo chữ ELEC trong logo đổi màu mượt mà */
+.nav-logo svg text {
+    transition: fill 0.3s ease;
+}
+
+nav.scrolled .nav-logo svg text {
+    fill: var(--blue) !important; /* Đổi sang màu xanh khi nền trắng */
+}
+
+/* Chữ T trong logo cũng có thể đổi màu nếu bạn muốn */
+nav.scrolled .nav-logo svg path {
+    /* fill: var(--blue); */ /* Giữ màu cam hoặc đổi tùy ý bạn */
+}
+/* --- ICON BOX STYLE --- */
+.card-icon {
+    width: 70px;
+    height: 70px;
+    background: rgba(255, 140, 66, 0.1); /* Màu cam nhạt cực kỳ sang */
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px; /* Tạo khoảng cách với tiêu đề to */
+    transition: all 0.4s ease;
+}
+
+.card-icon i {
+    font-size: 32px;
+    color: var(--orange); /* Màu cam chủ đạo */
+    transition: all 0.4s ease;
+}
+
+/* --- HIỆU ỨNG KHI HOVER VÀO THẺ --- */
+.product-card:hover .card-icon {
+    background: var(--orange);
+    transform: rotate(-10px) scale(1.1);
+}
+
+.product-card:hover .card-icon i {
+    color: white;
+}
+
+/* --- ĐIỀU CHỈNH LẠI TEXT CHO CÂN ĐỐI --- */
+.product-card h4 {
+    font-size: 26px; /* Chữ to nhưng không quá lố */
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 15px;
+    color: var(--blue);
+    letter-spacing: -0.5px;
+}
+
+.product-card p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: auto; /* Đẩy list thương hiệu xuống đáy */
+}
+
+.chi-tiet-lumi {
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--blue);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.chi-tiet-lumi:hover {
+    color: var(--orange);
+    padding-left: 5px;
+}
+
+/* =========================================
+   --- CSS RESPONSIVE CHO MOBILE MENU --- 
+========================================= */
+.menu-toggle {
+    display: none;
+    color: var(--text-dark);
+    font-size: 26px;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+nav.scrolled .menu-toggle {
+    color: var(--text-dark);
+}
+
+/* KÍCH HOẠT KHI MÀN HÌNH NHỎ HƠN 768px */
+@media (max-width: 768px) {
+    /* Phải có block này để hiện nút 3 gạch trên mobile */
+    .menu-toggle {
+        display: block !important; 
+        margin-right: 15px;
+    }
+
+    /* 1. Mặc định (chưa cuộn): Nút 3 gạch màu TRẮNG */
+    .menu-toggle i.fa-bars {
+        color: #ffffff !important; 
+        font-size: 26px; 
+        transition: color 0.3s ease;
+    }
+
+    /* 2. Khi cuộn trang (nền trắng): Nút 3 gạch màu ĐEN */
+    nav.scrolled .menu-toggle i.fa-bars {
+        color: #121212 !important; 
+    }
+
+    /* 3. Khi bấm mở menu (dấu X): Luôn luôn màu TRẮNG để nổi trên nền menu tối */
+    .menu-toggle i.fa-times,
+    nav.scrolled .menu-toggle i.fa-times {
+        color: #ffffff !important; 
+        font-size: 28px;
+    }
+
+    .nav-links {
+        position: fixed !important;
+        top: 0 !important;
+        right: -100% !important;
+        width: 75% !important;
+        height: 100vh !important;
+        background: rgba(15, 15, 15, 0.98) !important;
+        backdrop-filter: blur(15px) !important;
+        -webkit-backdrop-filter: blur(15px) !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        align-items: flex-start !important;
+        padding: 90px 30px 30px 30px !important;
+        transition: right 0.4s cubic-bezier(0.19, 1, 0.22, 1) !important;
+        overflow-y: auto !important;
+        gap: 0 !important;
+    }
+
+    .nav-links.active {
+        right: 0 !important;
+    }
+
+    .nav-item {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    .nav-item > a {
+        color: #fff !important;
+        font-size: 15px !important;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 15px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .nav-marker {
+        display: none !important;
+    }
+
+    /* Sửa lại Sub-menu để căn giữa */
+    /* =========================================
+       ÉP BUỘC CĂN GIỮA TUYỆT ĐỐI CHO MENU CON
+       ========================================= */
+    .sub-menu {
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        transform: none !important;
+        width: 100% !important;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: none !important;
+    }
+
+    .sub-menu.mobile-active {
+        display: block !important;
+        margin-top: 5px !important;
+    }
+
+    .sub-menu ul {
+        padding: 0 !important;
+        margin: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important; /* Ép cả khối ul vào giữa */
+        width: 100% !important;
+    }
+
+    .sub-menu ul li {
+        width: 100% !important;
+        display: block !important;
+    }
+
+    .sub-menu ul li a {
+        padding: 12px 0 !important;
+        font-size: 14px !important;
+        color: rgba(255, 255, 255, 0.7) !important;
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center !important;
+        transform: none !important;
+        white-space: normal !important;
+        background: transparent !important;
+    }
+
+    /* Khi cuộn trang (nav.scrolled), menu mobile vẫn giữ màu trắng */
+    nav.scrolled .nav-links li a {
+        color: #fff !important;
+    }
+    nav.scrolled .sub-menu {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+    nav.scrolled .sub-menu ul li a {
+        color: rgba(255, 255, 255, 0.7) !important;
+    }
+}
+
+/* ====================================================
+   KHÓA CHẾ ĐỘ SÁNG KỂ CẢ KHI MÁY ĐANG BẬT DARK MODE
+   ==================================================== */
+@media (prefers-color-scheme: dark) {
+    :root {
+        color-scheme: only light !important;
+    }
+    
+    html, body {
+        background-color: #fcfcfc !important; /* Ép nền sáng */
+        color: #121212 !important; /* Ép chữ đen */
+    }
+
+    /* Đảm bảo các khối nền trắng không bị biến thành đen */
+    .product-card, .footer, header, nav, section, div {
+        background-blend-mode: normal !important;
+    }
+}
+/* Giữ nguyên kích thước và định dạng cũ cho giao diện máy tính */
+.nav-logo img {
+    height: 110px;
+    width: auto;
+    transform: translateY(5px);
+    transition: height 0.3s ease; /* Thêm hiệu ứng cho mượt mà khi thu nhỏ trang */
+}
+
+/* Tạo giao diện nhỏ hơn cho màn hình điện thoại (chiều rộng màn hình tối đa 768px) */
+@media (max-width: 768px) {
+    .nav-logo img {
+        height: 80px; /* Bạn có thể thay đổi số 60px này cho phù hợp với ý muốn */
+        transform: translateY(0); /* Đặt lại giá trị dịch chuyển về 0 để logo cân giữa thanh menu trên điện thoại */
+    }
+}

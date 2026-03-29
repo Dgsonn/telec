@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -lh /d/telec_new/*.css)",
+      "Read(//d/telec_new/**)"
+    ]
+  }
+}

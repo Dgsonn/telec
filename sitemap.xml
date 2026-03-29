@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Trang chủ -->
+  <url>
+    <loc>https://telec.com.vn/</loc>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Các trang sản phẩm chính -->
+  <url>
+    <loc>https://telec.com.vn/inverter.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://telec.com.vn/solar-lithium.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Trang danh mục dự án -->
+  <url>
+    <loc>https://telec.com.vn/projects.html</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Các trang dự án chi tiết (Bạn thêm tiếp nếu có dự án mới) -->
+  <url>
+    <loc>https://telec.com.vn/project/smarthome_mrhung.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://telec.com.vn/project/smarthome_mrshien.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://telec.com.vn/project/solar_mrluan.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <loc>https://telec.com.vn/project/solar_mrquynh.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <loc>https://telec.com.vn/project/solar_mrslien.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <loc>https://telec.com.vn/project/solar_mrthang.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <loc>https://telec.com.vn/project/solar_mrtrung.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <loc>https://telec.com.vn/project/solar_mrtuan.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <loc>https://telec.com.vn/project/solar_mrtuananh.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <loc>https://telec.com.vn/projects/mr-viet-nam-dinh.html</loc>
+    <priority>0.7</priority>
+  </url>
+</urlset>

@@ -1,0 +1,8 @@
+# Bảo vệ thư mục admin
+Options -Indexes
+
+# Chặn truy cập trực tiếp vào includes và config
+<FilesMatch "^(auth|db|header|footer|sidebar)\.php$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
